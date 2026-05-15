@@ -10,4 +10,6 @@ public interface UserService {
     UserDTO createUser(UserModel model);
 
     List<UserModel> getAllUsers();
+
+    UserDTO getUserByUsername(String username);
 }

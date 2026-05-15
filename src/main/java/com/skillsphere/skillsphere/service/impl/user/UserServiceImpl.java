@@ -50,9 +50,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getAllUsers() {
 
-        return userRepository.findAll()
-                .stream()
-                .map(UserMapper::mapToModel)
-                .collect(Collectors.toList());
+        return userRepository.findAll().stream().map(UserMapper::mapToModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO getUserByUsername(String username) {
+
+        User user = userRepository.findByEmail(username).orElseGet(() -> userRepository
+                .findByLdap(username)
+                .orElseThrow(() -> new RuntimeException("User not found")));
+
+        return UserDTO.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .ldap(user.getLdap())
+                .roles(user.getRoles())
+                .build();
     }
 }

@@ -27,15 +27,11 @@ public class JwtTokenUtil {
 
         claims.put(
                 "roles",
-                userDetails.getAuthorities()
-                        .stream()
+                userDetails.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()));
 
-        SecretKey secretKey =
-                Keys.hmacShaKeyFor(
-                        secret.getBytes(StandardCharsets.UTF_8));
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
 
         return Jwts.builder()
                 .subject(userDetails.getUsername())
@@ -56,13 +52,9 @@ public class JwtTokenUtil {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
-    public <T> T getClaimFromToken(
-            String token,
-            Function<Claims, T> claimsResolver) {
+    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
 
-        SecretKey secretKey =
-                Keys.hmacShaKeyFor(
-                        secret.getBytes(StandardCharsets.UTF_8));
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
 
         Claims claims = Jwts.parser()
                 .verifyWith(secretKey)
@@ -73,19 +65,15 @@ public class JwtTokenUtil {
         return claimsResolver.apply(claims);
     }
 
-    public boolean validateToken(
-            String token,
-            UserDetails userDetails) {
+    public boolean validateToken(String token, UserDetails userDetails) {
 
         String username = getUsernameFromToken(token);
 
-        return username.equals(userDetails.getUsername())
-                && !isTokenExpired(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
 
-        return getExpirationDateFromToken(token)
-                .before(new Date());
+        return getExpirationDateFromToken(token).before(new Date());
     }
 }

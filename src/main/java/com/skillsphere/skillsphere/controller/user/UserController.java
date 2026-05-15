@@ -106,4 +106,26 @@ public class UserController {
     public String test() {
         return "Swagger Working";
     }
+
+    @Operation(summary = "Get User Details By JWT Token", description = "Fetch logged in user details using JWT token")
+    @ApiResponses(
+            value = {
+                @ApiResponse(responseCode = "200", description = "User fetched successfully"),
+                @ApiResponse(responseCode = "401", description = "Invalid token")
+            })
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String token = authHeader.substring(7);
+
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+
+        UserDTO user = userService.getUserByUsername(username);
+
+        return ResponseEntity.ok(user);
+    }
 }
