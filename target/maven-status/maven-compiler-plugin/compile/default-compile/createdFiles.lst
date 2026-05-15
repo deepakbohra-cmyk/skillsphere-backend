@@ -2,8 +2,9 @@ com/skillsphere/skillsphere/security/CustomUserDetailsService.class
 com/skillsphere/skillsphere/security/JwtRequestFilter.class
 com/skillsphere/skillsphere/dto/user/UserDTO.class
 com/skillsphere/skillsphere/dto/user/UserDTO$UserDTOBuilder.class
-com/skillsphere/skillsphere/controller/user/UserController.class
 com/skillsphere/skillsphere/SkillsphereApplication.class
+com/skillsphere/skillsphere/controller/user/UserController.class
+com/skillsphere/skillsphere/config/DataInitializer.class
 com/skillsphere/skillsphere/entity/Role.class
 com/skillsphere/skillsphere/service/user/UserService.class
 com/skillsphere/skillsphere/entity/User$UserBuilder.class
