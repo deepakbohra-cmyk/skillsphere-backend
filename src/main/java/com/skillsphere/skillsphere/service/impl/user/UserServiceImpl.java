@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skillsphere.skillsphere.dto.user.UserDTO;
 import com.skillsphere.skillsphere.entity.User;
+import com.skillsphere.skillsphere.mapper.UserMapper;
 import com.skillsphere.skillsphere.model.UserModel;
 import com.skillsphere.skillsphere.repository.UserRepository;
 import com.skillsphere.skillsphere.service.user.UserService;
@@ -29,6 +30,10 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Email already exists");
         }
 
+        if (userRepository.existsByLdap(model.getLdap())) {
+            throw new RuntimeException("LDAP already exists");
+        }
+
         User user = User.builder()
                 .name(model.getName())
                 .email(model.getEmail())
@@ -39,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(user);
 
-        return mapToDTO(savedUser);
+        return UserMapper.mapToDTO(savedUser);
     }
 
     @Override
@@ -47,30 +52,7 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll()
                 .stream()
-                .map(this::mapToModel)
+                .map(UserMapper::mapToModel)
                 .collect(Collectors.toList());
-    }
-
-    private UserDTO mapToDTO(User user) {
-
-        return UserDTO.builder()
-                .id(user.getId())
-                .name(user.getName())
-                .email(user.getEmail())
-                .ldap(user.getLdap())
-                .roles(user.getRoles())
-                .build();
-    }
-
-    private UserModel mapToModel(User user) {
-
-        UserModel model = new UserModel();
-
-        model.setName(user.getName());
-        model.setEmail(user.getEmail());
-        model.setLdap(user.getLdap());
-        model.setRoles(user.getRoles());
-
-        return model;
     }
 }

@@ -1,6 +1,5 @@
 package com.skillsphere.skillsphere.config;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
@@ -16,46 +15,36 @@ import com.skillsphere.skillsphere.repository.UserRepository;
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    CommandLineRunner initDatabase(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder) {
 
         return args -> {
 
-            // Create ADMIN user
             if (!userRepository.existsByEmail("admin@skillsphere.com")) {
 
-                Set<Role> adminRoles = new HashSet<>();
-                adminRoles.add(Role.ADMIN);
-
                 User admin = User.builder()
-                        .name("System Admin")
-                        .ldap("admin001")
+                        .name("Admin User")
+                        .ldap("admin")
                         .email("admin@skillsphere.com")
-                        .password(passwordEncoder.encode("Admin@123"))
-                        .roles(adminRoles)
+                        .password(passwordEncoder.encode("admin123"))
+                        .roles(Set.of(Role.ADMIN))
                         .build();
 
                 userRepository.save(admin);
-
-                System.out.println("✅ Default ADMIN created");
             }
 
-            // Create STUDENT user
             if (!userRepository.existsByEmail("user@skillsphere.com")) {
 
-                Set<Role> userRoles = new HashSet<>();
-                userRoles.add(Role.USER);
-
                 User user = User.builder()
-                        .name("Default User")
-                        .ldap("user001")
+                        .name("Normal User")
+                        .ldap("user")
                         .email("user@skillsphere.com")
-                        .password(passwordEncoder.encode("User@123"))
-                        .roles(userRoles)
+                        .password(passwordEncoder.encode("user123"))
+                        .roles(Set.of(Role.USER))
                         .build();
 
                 userRepository.save(user);
-
-                System.out.println("✅ Default USER created");
             }
         };
     }

@@ -64,7 +64,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(userModel), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Login User", description = "Authenticate user and generate JWT token")
+    @Operation(summary = "Login User", description = "Authenticate user using email or ldap")
     @ApiResponses(
             value = {
                 @ApiResponse(
@@ -80,9 +80,9 @@ public class UserController {
     public ResponseEntity<JwtResponse> login(@RequestBody AuthModel authModel) {
 
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authModel.getEmail(), authModel.getPassword()));
+                new UsernamePasswordAuthenticationToken(authModel.getUsername(), authModel.getPassword()));
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(authModel.getEmail());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authModel.getUsername());
 
         String token = jwtTokenUtil.generateToken(userDetails);
 

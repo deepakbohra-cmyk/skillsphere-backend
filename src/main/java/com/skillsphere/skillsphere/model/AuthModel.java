@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AuthModel {
 
-    private String email;
+    private String username;
 
     private String password;
 }
