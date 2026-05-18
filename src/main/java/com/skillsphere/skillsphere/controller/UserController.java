@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.controller.user;
+package com.skillsphere.skillsphere.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,12 +10,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import com.skillsphere.skillsphere.dto.user.JwtResponse;
-import com.skillsphere.skillsphere.dto.user.UserDTO;
+import com.skillsphere.skillsphere.dto.JwtResponse;
+import com.skillsphere.skillsphere.dto.UserDTO;
 import com.skillsphere.skillsphere.model.AuthModel;
 import com.skillsphere.skillsphere.model.UserModel;
 import com.skillsphere.skillsphere.security.CustomUserDetailsService;
-import com.skillsphere.skillsphere.service.user.UserService;
+import com.skillsphere.skillsphere.service.UserService;
 import com.skillsphere.skillsphere.util.JwtTokenUtil;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,7 +64,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(userModel), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Login User", description = "Authenticate user and generate JWT token")
+    @Operation(summary = "Login User", description = "Authenticate user using email or ldap")
     @ApiResponses(
             value = {
                 @ApiResponse(
@@ -80,9 +80,9 @@ public class UserController {
     public ResponseEntity<JwtResponse> login(@RequestBody AuthModel authModel) {
 
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authModel.getEmail(), authModel.getPassword()));
+                new UsernamePasswordAuthenticationToken(authModel.getUsername(), authModel.getPassword()));
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(authModel.getEmail());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(authModel.getUsername());
 
         String token = jwtTokenUtil.generateToken(userDetails);
 
@@ -105,5 +105,27 @@ public class UserController {
     @GetMapping("/test")
     public String test() {
         return "Swagger Working";
+    }
+
+    @Operation(summary = "Get User Details By JWT Token", description = "Fetch logged in user details using JWT token")
+    @ApiResponses(
+            value = {
+                @ApiResponse(responseCode = "200", description = "User fetched successfully"),
+                @ApiResponse(responseCode = "401", description = "Invalid token")
+            })
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String token = authHeader.substring(7);
+
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+
+        UserDTO user = userService.getUserByUsername(username);
+
+        return ResponseEntity.ok(user);
     }
 }

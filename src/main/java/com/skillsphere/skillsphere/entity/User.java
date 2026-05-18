@@ -15,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,12 @@ public class User {
     private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id")
+    )
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Set<Role> roles;
 
     @NotBlank

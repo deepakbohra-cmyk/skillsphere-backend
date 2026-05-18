@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.service.impl.user;
+package com.skillsphere.skillsphere.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.skillsphere.skillsphere.dto.user.UserDTO;
+import com.skillsphere.skillsphere.dto.UserDTO;
 import com.skillsphere.skillsphere.entity.User;
+import com.skillsphere.skillsphere.mapper.UserMapper;
 import com.skillsphere.skillsphere.model.UserModel;
 import com.skillsphere.skillsphere.repository.UserRepository;
-import com.skillsphere.skillsphere.service.user.UserService;
+import com.skillsphere.skillsphere.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,6 +30,10 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Email already exists");
         }
 
+        if (userRepository.existsByLdap(model.getLdap())) {
+            throw new RuntimeException("LDAP already exists");
+        }
+
         User user = User.builder()
                 .name(model.getName())
                 .email(model.getEmail())
@@ -39,19 +44,21 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(user);
 
-        return mapToDTO(savedUser);
+        return UserMapper.mapToDTO(savedUser);
     }
 
     @Override
     public List<UserModel> getAllUsers() {
 
-        return userRepository.findAll()
-                .stream()
-                .map(this::mapToModel)
-                .collect(Collectors.toList());
+        return userRepository.findAll().stream().map(UserMapper::mapToModel).collect(Collectors.toList());
     }
 
-    private UserDTO mapToDTO(User user) {
+    @Override
+    public UserDTO getUserByUsername(String username) {
+
+        User user = userRepository.findByEmail(username).orElseGet(() -> userRepository
+                .findByLdap(username)
+                .orElseThrow(() -> new RuntimeException("User not found")));
 
         return UserDTO.builder()
                 .id(user.getId())
@@ -60,17 +67,5 @@ public class UserServiceImpl implements UserService {
                 .ldap(user.getLdap())
                 .roles(user.getRoles())
                 .build();
-    }
-
-    private UserModel mapToModel(User user) {
-
-        UserModel model = new UserModel();
-
-        model.setName(user.getName());
-        model.setEmail(user.getEmail());
-        model.setLdap(user.getLdap());
-        model.setRoles(user.getRoles());
-
-        return model;
     }
 }

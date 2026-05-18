@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.dto.user;
+package com.skillsphere.skillsphere.dto;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.skillsphere.skillsphere.SkillsphereApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.655 s -- in com.skillsphere.skillsphere.SkillsphereApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.691 s -- in com.skillsphere.skillsphere.SkillsphereApplicationTests
