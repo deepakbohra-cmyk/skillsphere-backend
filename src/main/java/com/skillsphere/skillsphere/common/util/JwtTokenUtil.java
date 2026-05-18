@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.util;
+package com.skillsphere.skillsphere.common.util;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;

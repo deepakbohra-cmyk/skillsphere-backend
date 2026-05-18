@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.exception;
+package com.skillsphere.skillsphere.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

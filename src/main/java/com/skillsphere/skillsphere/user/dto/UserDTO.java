@@ -1,8 +1,8 @@
-package com.skillsphere.skillsphere.dto;
+package com.skillsphere.skillsphere.user.dto;
 
 import java.util.Set;
 
-import com.skillsphere.skillsphere.entity.Role;
+import com.skillsphere.skillsphere.user.entity.Role;
 
 import lombok.Builder;
 import lombok.Data;

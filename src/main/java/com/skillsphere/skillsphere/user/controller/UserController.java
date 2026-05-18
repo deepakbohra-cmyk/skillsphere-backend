@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.controller;
+package com.skillsphere.skillsphere.user.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
-import com.skillsphere.skillsphere.dto.JwtResponse;
-import com.skillsphere.skillsphere.dto.UserDTO;
-import com.skillsphere.skillsphere.model.AuthModel;
-import com.skillsphere.skillsphere.model.UserModel;
-import com.skillsphere.skillsphere.security.CustomUserDetailsService;
-import com.skillsphere.skillsphere.service.UserService;
-import com.skillsphere.skillsphere.util.JwtTokenUtil;
+import com.skillsphere.skillsphere.common.util.JwtTokenUtil;
+import com.skillsphere.skillsphere.user.dto.JwtResponse;
+import com.skillsphere.skillsphere.user.dto.UserDTO;
+import com.skillsphere.skillsphere.user.model.AuthModel;
+import com.skillsphere.skillsphere.user.model.UserModel;
+import com.skillsphere.skillsphere.user.security.CustomUserDetailsService;
+import com.skillsphere.skillsphere.user.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

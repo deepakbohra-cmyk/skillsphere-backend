@@ -19,8 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.skillsphere.skillsphere.security.CustomUserDetailsService;
-import com.skillsphere.skillsphere.security.JwtRequestFilter;
+import com.skillsphere.skillsphere.user.security.CustomUserDetailsService;
+import com.skillsphere.skillsphere.user.security.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity

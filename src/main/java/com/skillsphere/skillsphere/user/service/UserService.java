@@ -1,9 +1,9 @@
-package com.skillsphere.skillsphere.service;
+package com.skillsphere.skillsphere.user.service;
 
 import java.util.List;
 
-import com.skillsphere.skillsphere.dto.UserDTO;
-import com.skillsphere.skillsphere.model.UserModel;
+import com.skillsphere.skillsphere.user.dto.UserDTO;
+import com.skillsphere.skillsphere.user.model.UserModel;
 
 public interface UserService {
 
