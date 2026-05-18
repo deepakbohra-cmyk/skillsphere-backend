@@ -1,6 +1,6 @@
 package com.skillsphere.skillsphere.mapper;
 
-import com.skillsphere.skillsphere.dto.user.UserDTO;
+import com.skillsphere.skillsphere.dto.UserDTO;
 import com.skillsphere.skillsphere.entity.User;
 import com.skillsphere.skillsphere.model.UserModel;
 
