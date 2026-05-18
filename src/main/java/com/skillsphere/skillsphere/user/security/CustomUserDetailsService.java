@@ -1,10 +1,10 @@
-package com.skillsphere.skillsphere.security;
+package com.skillsphere.skillsphere.user.security;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.skillsphere.skillsphere.entity.User;
-import com.skillsphere.skillsphere.repository.UserRepository;
+import com.skillsphere.skillsphere.user.entity.User;
+import com.skillsphere.skillsphere.user.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

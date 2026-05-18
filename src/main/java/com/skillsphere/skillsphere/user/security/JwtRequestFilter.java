@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.security;
+package com.skillsphere.skillsphere.user.security;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.skillsphere.skillsphere.util.JwtTokenUtil;
+import com.skillsphere.skillsphere.common.util.JwtTokenUtil;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.*;

@@ -1,8 +1,8 @@
-package com.skillsphere.skillsphere.mapper;
+package com.skillsphere.skillsphere.user.mapper;
 
-import com.skillsphere.skillsphere.dto.UserDTO;
-import com.skillsphere.skillsphere.entity.User;
-import com.skillsphere.skillsphere.model.UserModel;
+import com.skillsphere.skillsphere.user.entity.User;
+import com.skillsphere.skillsphere.user.dto.UserDTO;
+import com.skillsphere.skillsphere.user.model.UserModel;
 
 public class UserMapper {
 

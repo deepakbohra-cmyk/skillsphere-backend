@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.model;
+package com.skillsphere.skillsphere.user.model;
 
 import lombok.Data;
 

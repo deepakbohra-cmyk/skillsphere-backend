@@ -1,8 +1,8 @@
-package com.skillsphere.skillsphere.model;
+package com.skillsphere.skillsphere.user.model;
 
 import java.util.Set;
 
-import com.skillsphere.skillsphere.entity.Role;
+import com.skillsphere.skillsphere.user.entity.Role;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.service.impl;
+package com.skillsphere.skillsphere.user.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.skillsphere.skillsphere.dto.UserDTO;
-import com.skillsphere.skillsphere.entity.User;
-import com.skillsphere.skillsphere.mapper.UserMapper;
-import com.skillsphere.skillsphere.model.UserModel;
-import com.skillsphere.skillsphere.repository.UserRepository;
-import com.skillsphere.skillsphere.service.UserService;
+import com.skillsphere.skillsphere.user.entity.User;
+import com.skillsphere.skillsphere.user.dto.UserDTO;
+import com.skillsphere.skillsphere.user.mapper.UserMapper;
+import com.skillsphere.skillsphere.user.model.UserModel;
+import com.skillsphere.skillsphere.user.repository.UserRepository;
+import com.skillsphere.skillsphere.user.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

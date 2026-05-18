@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.entity;
+package com.skillsphere.skillsphere.user.entity;
 
 import java.time.LocalDateTime;
 

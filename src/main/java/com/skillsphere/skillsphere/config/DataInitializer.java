@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.skillsphere.skillsphere.entity.Role;
-import com.skillsphere.skillsphere.entity.User;
-import com.skillsphere.skillsphere.repository.UserRepository;
+import com.skillsphere.skillsphere.user.entity.Role;
+import com.skillsphere.skillsphere.user.entity.User;
+import com.skillsphere.skillsphere.user.repository.UserRepository;
 
 @Configuration
 public class DataInitializer {
