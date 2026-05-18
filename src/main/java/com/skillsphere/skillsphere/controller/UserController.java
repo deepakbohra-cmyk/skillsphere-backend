@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import com.skillsphere.skillsphere.dto.JwtResponse;
 import com.skillsphere.skillsphere.dto.UserDTO;
@@ -114,15 +115,9 @@ public class UserController {
                 @ApiResponse(responseCode = "401", description = "Invalid token")
             })
     @GetMapping("/me")
-    public ResponseEntity<UserDTO> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+    public ResponseEntity<UserDTO> getCurrentUser(Authentication authentication) {
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-        String token = authHeader.substring(7);
-
-        String username = jwtTokenUtil.getUsernameFromToken(token);
+        String username = authentication.getName();
 
         UserDTO user = userService.getUserByUsername(username);
 
