@@ -1,6 +1,6 @@
 package com.skillsphere.skillsphere.enrollment.entity;
 
-import com.skillsphere.skillsphere.common.enums.BaseEntity;
+import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.learning.entity.Course;
 import com.skillsphere.skillsphere.user.entity.User;
 

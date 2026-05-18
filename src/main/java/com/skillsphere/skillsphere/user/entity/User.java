@@ -2,7 +2,7 @@ package com.skillsphere.skillsphere.user.entity;
 
 import java.util.Set;
 
-import com.skillsphere.skillsphere.common.enums.BaseEntity;
+import com.skillsphere.skillsphere.common.entity.BaseEntity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -2,7 +2,7 @@ package com.skillsphere.skillsphere.certificate.entity;
 
 import java.time.LocalDateTime;
 
-import com.skillsphere.skillsphere.common.enums.BaseEntity;
+import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.learning.entity.Course;
 import com.skillsphere.skillsphere.user.entity.User;
 
