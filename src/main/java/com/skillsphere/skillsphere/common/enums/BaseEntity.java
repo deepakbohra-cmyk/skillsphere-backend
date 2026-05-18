@@ -1,4 +1,4 @@
-package com.skillsphere.skillsphere.user.entity;
+package com.skillsphere.skillsphere.common.enums;
 
 import java.time.LocalDateTime;
 

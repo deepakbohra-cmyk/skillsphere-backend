@@ -2,6 +2,8 @@ package com.skillsphere.skillsphere.user.entity;
 
 import java.util.Set;
 
+import com.skillsphere.skillsphere.common.enums.BaseEntity;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -45,4 +47,6 @@ public class User extends BaseEntity {
     @NotBlank
     @Size(min = 5)
     private String password;
+
+    boolean isActive = true;
 }

@@ -32,3 +32,4 @@ CREATE TABLE user_roles (
         REFERENCES users(id)
         ON DELETE CASCADE
 );
+
