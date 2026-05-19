@@ -41,7 +41,7 @@ public class DataInitializer {
                         .ldap("user")
                         .email("user@skillsphere.com")
                         .password(passwordEncoder.encode("user123"))
-                        .roles(Set.of(Role.USER))
+                        .roles(Set.of(Role.LEARNER))
                         .build();
 
                 userRepository.save(user);

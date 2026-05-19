@@ -2,21 +2,16 @@ package com.skillsphere.skillsphere.user.entity;
 
 import com.skillsphere.skillsphere.common.entity.BaseEntity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "instructors")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Instructor extends BaseEntity {
 
     @Id
@@ -24,12 +19,19 @@ public class Instructor extends BaseEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
     private User user;
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String bio;
 
-    private Integer experienceYears;
+    @Builder.Default
+    @Column(name = "experience_years")
+    private Integer experienceYears = 0;
+
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 }
