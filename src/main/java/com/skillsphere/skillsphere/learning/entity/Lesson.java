@@ -1,52 +1,61 @@
 package com.skillsphere.skillsphere.learning.entity;
 
-
 import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.learning.enums.LessonType;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "lessons")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Lesson extends BaseEntity {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-private String title;
+    @Column(nullable = false, length = 255)
+    private String title;
 
-private String description;
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
-@Enumerated(EnumType.STRING)
-private LessonType type;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private LessonType type;
 
-private String content;
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
-private String videoUrl;
+    @Column(name = "video_url", length = 500)
+    private String videoUrl;
 
-private Integer durationMinutes;
+    @Builder.Default
+    @Column(name = "duration_seconds")
+    private Integer durationSeconds = 0;
 
-private Boolean isFree;
+    @Builder.Default
+    @Column(name = "is_free", nullable = false)
+    private Boolean isFree = false;
 
-private Boolean isPublished;
+    @Builder.Default
+    @Column(name = "is_published", nullable = false)
+    private Boolean isPublished = false;
 
-private Integer position;
+    @Builder.Default
+    @Column(nullable = false)
+    private Integer position = 0;
 
-@ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name = "section_id")
-private CourseSection section;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id", nullable = false)
+    private CourseSection section;
+
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 }

@@ -7,7 +7,6 @@ import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -24,13 +23,13 @@ public class User extends BaseEntity {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String name;
 
     @Column(unique = true)
-    @NotBlank
     private String ldap;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     @Email
     @NotBlank
     private String email;
@@ -44,9 +43,13 @@ public class User extends BaseEntity {
     @Column(name = "role")
     private Set<Role> roles;
 
-    @NotBlank
-    @Size(min = 5)
     private String password;
 
-    boolean isActive = true;
+    @Builder.Default
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = true;
+
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
 }
