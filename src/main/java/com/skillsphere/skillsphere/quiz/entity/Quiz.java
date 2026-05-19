@@ -1,6 +1,6 @@
 package com.skillsphere.skillsphere.quiz.entity;
 
-import com.skillsphere.skillsphere.common.enums.BaseEntity;
+import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.learning.entity.Lesson;
 
 import jakarta.persistence.Entity;

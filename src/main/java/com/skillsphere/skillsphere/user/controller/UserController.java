@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 @Tag(name = "User Management", description = "APIs for user registration, login and management")
 public class UserController {
 

@@ -1,7 +1,7 @@
 package com.skillsphere.skillsphere.learning.entity;
 
 
-import com.skillsphere.skillsphere.common.enums.BaseEntity;
+import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.learning.enums.LessonType;
 
 import jakarta.persistence.Entity;
