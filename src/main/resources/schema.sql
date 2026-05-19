@@ -5,6 +5,7 @@
 -- ============================================================
 
 -- ── Extensions ──────────────────────────────────────────────
+CREATE DOMAIN IF NOT EXISTS CITEXT AS VARCHAR(255);
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";   -- gen_random_uuid()
 CREATE EXTENSION IF NOT EXISTS "citext";     -- case-insensitive email
 

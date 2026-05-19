@@ -33,6 +33,6 @@ public class AttemptAnswer {
     private Boolean isCorrect = false;
 
     @Builder.Default
-    @Column(name = "points_earned", nullable = false, precision = 5, scale = 2)
+    @Column(name = "points_earned", nullable = false)
     private Double pointsEarned = 0.0;
 }

@@ -37,15 +37,15 @@ public class AssessmentAttempt extends BaseEntity {
     private Integer attemptNumber;
 
     @Builder.Default
-    @Column(nullable = false, precision = 5, scale = 2)
+    @Column(nullable = false)
     private Double score = 0.0;
 
     @Builder.Default
-    @Column(name = "score_pct", nullable = false, precision = 5, scale = 2)
+    @Column(name = "score_pct", nullable = false)
     private Double scorePct = 0.0;
 
     @Builder.Default
-    @Column(name = "weighted_points", nullable = false, precision = 7, scale = 2)
+    @Column(name = "weighted_points", nullable = false)
     private Double weightedPoints = 0.0;
 
     @Builder.Default

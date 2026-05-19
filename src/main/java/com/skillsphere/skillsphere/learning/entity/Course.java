@@ -1,6 +1,7 @@
 package com.skillsphere.skillsphere.learning.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.skillsphere.skillsphere.common.entity.BaseEntity;
 import com.skillsphere.skillsphere.user.entity.Instructor;
@@ -64,7 +65,7 @@ public class Course extends BaseEntity {
     private Integer enrolledCount = 0;
 
     @Builder.Default
-    @Column(precision = 3, scale = 2)
+    @Column
     private Double rating = 0.0;
 
     @Builder.Default
@@ -76,11 +77,21 @@ public class Course extends BaseEntity {
     private Boolean certificateEnabled = true;
 
     @Builder.Default
-    @Column(name = "assessment_weightage", nullable = false, precision = 3, scale = 2)
+    @Column(name = "assessment_weightage", nullable = false)
     private Double assessmentWeightage = 1.0;
 
     @Column(name = "last_updated_at")
     private LocalDateTime lastUpdatedAt;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_learning_goals", joinColumns = @JoinColumn(name = "course_id"))
+    @Column(name = "goal")
+    private List<String> whatYouLearn;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_requirements", joinColumns = @JoinColumn(name = "course_id"))
+    @Column(name = "requirement")
+    private List<String> requirements;
 
     @Builder.Default
     @Column(name = "is_deleted", nullable = false)

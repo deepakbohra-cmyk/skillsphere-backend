@@ -47,7 +47,7 @@ public class Assessment extends BaseEntity {
     private Integer maxAttempts = 3;
 
     @Builder.Default
-    @Column(nullable = false, precision = 3, scale = 2)
+    @Column(nullable = false)
     private Double weightage = 1.0;
 
     @Builder.Default
